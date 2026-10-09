@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Charohergar Agency — Management y Comunicación para artistas y grupos</title>
+<meta name="description" content="Charohergar representa artistas y grupos musicales: management 360°, comunicación, prensa y booking. Un solo interlocutor, un solo plan, con los números a la vista.">
+<meta name="theme-color" content="#0B0B0B">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="./assets/img/logo.png">
+<meta property="og:title" content="Charohergar Agency — Management y Comunicación">
+<meta property="og:description" content="Management, comunicación y booking para artistas y grupos musicales.">
+<meta property="og:type" content="website">
+<link rel="preload" href="/src/styles/fonts/v5-jizBRFtNs2ka5fXjeivQ4LroWlx-6zUTjg.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<!-- ======================= LOADER ======================= -->
+<div class="loader" id="loader" role="status" aria-live="polite">
+  <div class="loader__mark" aria-hidden="true">
+    <svg viewBox="0 0 512 512" width="86" height="86">
+      <rect x="176" y="40" width="160" height="432" fill="none" stroke="currentColor" stroke-width="3" opacity=".35"/>
+      <g fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M92 398 C 18 336 6 214 58 142 C 108 74 208 46 300 48 C 380 50 440 78 462 120 C 478 150 468 182 442 192"/>
+        <path d="M150 434 C 140 352 166 268 206 214 C 236 172 270 178 262 214 C 254 254 214 300 199 342"/>
+        <path d="M199 342 C 224 320 250 302 268 322 C 289 344 293 392 283 434"/>
+        <path d="M283 434 C 332 458 402 464 456 432 C 481 416 487 392 470 384"/>
+      </g>
+    </svg>
+  </div>
+  <p class="loader__label">Charohergar Agency</p>
+  <div class="loader__bar" aria-hidden="true"><i id="loader-fill"></i></div>
+  <p class="loader__pct"><span id="loader-pct">0</span>%</p>
+</div>
+
+<!-- ======================= WEBGL ======================= -->
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- fallback 2D cuando no hay WebGL -->
+<div class="gl-fallback" id="gl-fallback" aria-hidden="true">
+  <img src="./assets/img/logo.png" alt="" width="512" height="512">
+</div>
+
+<!-- ======================= CURSOR ======================= -->
+<div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__label" id="cursor-label"></span></div>
+
+<!-- ======================= NAV ======================= -->
+<header class="nav" id="nav" data-nav-theme="dark">
+  <div class="nav__inner">
+    <a class="brand" href="#intro" aria-label="Charohergar Agency, inicio">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 512 512" width="30" height="30">
+          <rect x="176" y="40" width="160" height="432" fill="none" stroke="currentColor" stroke-width="4" opacity=".45"/>
+          <g fill="none" stroke="currentColor" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M92 398 C 18 336 6 214 58 142 C 108 74 208 46 300 48 C 380 50 440 78 462 120 C 478 150 468 182 442 192"/>
+            <path d="M150 434 C 140 352 166 268 206 214 C 236 172 270 178 262 214 C 254 254 214 300 199 342"/>
+            <path d="M199 342 C 224 320 250 302 268 322 C 289 344 293 392 283 434"/>
+            <path d="M283 434 C 332 458 402 464 456 432 C 481 416 487 392 470 384"/>
+          </g>
+        </svg>
+      </span>
+      <span class="brand__text">
+        <span class="brand__name">Charohergar</span>
+        <span class="brand__sub">Agency</span>
+      </span>
+    </a>
+
+    <nav class="nav__links" aria-label="Navegación principal">
+      <a href="#story">Servicios</a>
+      <a href="#artists">Artistas</a>
+      <a href="#process">Proceso</a>
+    </nav>
+
+    <div class="nav__tools">
+      <button class="sound" id="sound-btn" type="button" aria-pressed="false" data-cursor="play" title="Sonido ambiente">
+        <span class="sound__eq" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="sound__txt" id="sound-txt">SOUND OFF</span>
+      </button>
+      <a class="btn btn--sm btn--gold nav__cta" href="#cta" data-magnetic>Trabaja con nosotros</a>
+      <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+        <i></i><i></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="menu" id="menu" hidden>
+    <a href="#story">Servicios</a>
+    <a href="#artists">Artistas</a>
+    <a href="#process">Proceso</a>
+    <a href="#cta" class="btn btn--gold">Trabaja con nosotros</a>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <!-- ======================= 01 · INTRO ======================= -->
+  <section class="sec sec--intro" id="intro" data-scene="intro" data-nav="dark" aria-labelledby="intro-title">
+    <div class="pin">
+      <div class="wrap intro">
+        <p class="intro__first" data-reveal>Artistas musicales, grupos musicales, música en general</p>
+        <h1 class="intro__title" id="intro-title">
+          <span class="line" data-reveal data-delay="1"><span>Tu obra,</span></span>
+          <span class="line" data-reveal data-delay="2"><span><em>bien representada.</em></span></span>
+        </h1>
+        <p class="intro__sub" data-reveal data-delay="3">
+          Management, comunicación y booking para artistas y grupos que quieren crecer
+          con estructura. Un solo interlocutor, un solo plan, cero promesas vacías.
+        </p>
+        <div class="intro__scroll" data-reveal data-delay="4" aria-hidden="true">
+          <span>SCROLL</span><i></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= 02 · TRANSFORMACIÓN ======================= -->
+  <section class="sec sec--stack" id="transform" data-scene="transform" data-nav="dark" aria-labelledby="transform-title" style="--steps:4">
+    <div class="pin">
+      <div class="wrap stack">
+        <p class="eyebrow" data-reveal>La transformación</p>
+        <h2 class="sr-only" id="transform-title">De la idea a la representación</h2>
+
+        <div class="stack__track" id="transform-track">
+          <article class="stack__item" data-step="0">
+            <span class="stack__num">Etapa 01</span>
+            <h3>Aparece la forma</h3>
+            <p>Un proyecto empieza como una silueta: talento, material y una idea. Todavía sin estructura.</p>
+          </article>
+          <article class="stack__item" data-step="1">
+            <span class="stack__num">Etapa 02</span>
+            <h3>Se enciende la luz</h3>
+            <p>Revisamos proyecto, datos, imagen y mercado. Salís sabiendo exactamente dónde estás parado.</p>
+          </article>
+          <article class="stack__item" data-step="2">
+            <span class="stack__num">Etapa 03</span>
+            <h3>Se traza la firma</h3>
+            <p>Objetivos, fechas y presupuesto por escrito. Antes de firmar cualquier cosa.</p>
+          </article>
+          <article class="stack__item" data-step="3">
+            <span class="stack__num">Etapa 04</span>
+            <h3>La marca toma cuerpo</h3>
+            <p>Prensa, identidad, escenario y plataformas trabajando sobre una sola idea.</p>
+          </article>
+        </div>
+
+        <ol class="stack__dots" aria-hidden="true">
+          <li><i></i></li><li><i></i></li><li><i></i></li><li><i></i></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= 03 · REVELACIÓN ======================= -->
+  <section class="sec sec--reveal" id="reveal" data-scene="reveal" data-nav="dark" aria-labelledby="reveal-title">
+    <div class="pin">
+      <div class="wrap reveal">
+        <p class="eyebrow eyebrow--dark" data-reveal>Management y Comunicación</p>
+        <h2 class="reveal__title" id="reveal-title">
+          <span class="line" data-reveal data-delay="1"><span>Charohergar</span></span>
+          <span class="line" data-reveal data-delay="2"><span><em>Agency</em></span></span>
+        </h2>
+        <p class="reveal__sub" data-reveal data-delay="3">
+          Representamos artistas y grupos en la etapa donde la carrera empieza a tomar forma.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= 04 · PRODUCT STORY ======================= -->
+  <section class="sec sec--stack sec--story" id="story" data-scene="story" data-nav="dark" aria-labelledby="story-title" style="--steps:4">
+    <div class="pin">
+      <div class="wrap stack stack--left">
+        <p class="eyebrow" data-reveal>Qué hacemos</p>
+        <h2 class="sr-only" id="story-title">Servicios de management y comunicación</h2>
+
+        <div class="stack__track" id="story-track">
+          <article class="stack__item" data-step="0">
+            <span class="stack__num">Característica 01</span>
+            <h3>Management 360°</h3>
+            <p>Estudio tu proyecto a fondo y te represento frente a sellos, promotoras y medios. Cuando algo hay que resolverlo, lo resuelvo yo.</p>
+            <ul class="stack__list">
+              <li>Carrera y estrategia con objetivos por trimestre</li>
+              <li>Contratos, editorial, sync y registro de obra</li>
+              <li>Finanzas, presupuestos de show y control de pagos</li>
+            </ul>
+          </article>
+          <article class="stack__item" data-step="1">
+            <span class="stack__num">Característica 02</span>
+            <h3>Comunicación y Prensa</h3>
+            <p>Prensa, identidad visual, redes y plataformas sobre una sola idea, con una voz constante en el tiempo.</p>
+            <ul class="stack__list">
+              <li>Pitch de prensa y notas escritas</li>
+              <li>Identidad visual, foto y artwork</li>
+              <li>Calendario editorial y presencia en playlists</li>
+            </ul>
+          </article>
+          <article class="stack__item" data-step="2">
+            <span class="stack__num">Característica 03</span>
+            <h3>Booking y Giras</h3>
+            <p>Cerramos fechas que suman, con presupuestos que no son una ilusión y rendición de cuentas.</p>
+            <ul class="stack__list">
+              <li>Presupuesto de show y cálculo de caché</li>
+              <li>Estructuración y rentabilidad de gira</li>
+              <li>Negociación con promotoras y locales</li>
+            </ul>
+          </article>
+          <article class="stack__item" data-step="3">
+            <span class="stack__num">Característica 04</span>
+            <h3>Método sin sorpresas</h3>
+            <p>Reporte mensual corto y directo, con los números incluidos. Sin letra pequeña.</p>
+            <ul class="stack__list">
+              <li>Reuniones semanales</li>
+              <li>Informe mensual con números a la vista</li>
+              <li>Revisión de acuerdo a los 6 meses</li>
+            </ul>
+          </article>
+        </div>
+
+        <ol class="stack__dots" aria-hidden="true">
+          <li><i></i></li><li><i></i></li><li><i></i></li><li><i></i></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= 05 · DETALLES ======================= -->
+  <section class="sec sec--stack sec--details" id="details" data-scene="details" data-nav="dark" aria-labelledby="details-title" style="--steps:3">
+    <div class="pin">
+      <div class="wrap stack stack--right">
+        <p class="eyebrow" data-reveal>De cerca</p>
+        <h2 class="sr-only" id="details-title">Detalles de la marca</h2>
+
+        <div class="stack__track" id="details-track">
+          <article class="stack__item" data-step="0">
+            <span class="stack__num">Detalle 01</span>
+            <h3>El trazo</h3>
+            <p>Un solo trazo: management, comunicación y booking sin costuras entre ellos.</p>
+          </article>
+          <article class="stack__item" data-step="1">
+            <span class="stack__num">Detalle 02</span>
+            <h3>El sello</h3>
+            <p>La placa que sostiene el proyecto: obra, imagen y derechos cuidados al milímetro.</p>
+          </article>
+          <article class="stack__item" data-step="2">
+            <span class="stack__num">Detalle 03</span>
+            <h3>La luz</h3>
+            <p>Poner el foco donde corresponde: prensa, escenario y plataforma, con la misma voz.</p>
+          </article>
+        </div>
+
+        <ol class="stack__dots" aria-hidden="true">
+          <li><i></i></li><li><i></i></li><li><i></i></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= 06 · PROCESO ======================= -->
+  <section class="sec sec--process" id="process" data-scene="process" data-nav="dark" aria-labelledby="process-title">
+    <div class="wrap">
+      <header class="sec__head">
+        <p class="eyebrow" data-reveal>Proceso</p>
+        <h2 id="process-title" data-reveal data-delay="1">Cómo trabajamos, <em>sin sorpresas</em></h2>
+        <p class="sec__lead" data-reveal data-delay="2">Cuatro pasos, siempre en el mismo orden.</p>
+      </header>
+
+      <ol class="steps">
+        <li class="step" data-reveal data-delay="1" data-tilt>
+          <span class="step__num">01</span>
+          <h3>Diagnóstico</h3>
+          <p>Revisamos proyecto, datos, imagen y mercado. Salís sabiendo exactamente dónde estás parado.</p>
+        </li>
+        <li class="step" data-reveal data-delay="2" data-tilt>
+          <span class="step__num">02</span>
+          <h3>Estrategia</h3>
+          <p>Definimos objetivos, plan de comunicación y calendario. Lo que no se puede medir, no se promete.</p>
+        </li>
+        <li class="step" data-reveal data-delay="3" data-tilt>
+          <span class="step__num">03</span>
+          <h3>Ejecución</h3>
+          <p>Prensa, booking, redes y escenario avanzando a la vez, sobre la misma idea y con un solo interlocutor.</p>
+        </li>
+        <li class="step" data-reveal data-delay="4" data-tilt>
+          <span class="step__num">04</span>
+          <h3>Reporte</h3>
+          <p>Informe mensual con números a la vista y revisión del acuerdo a los 6 meses.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ======================= 07 · ARTISTAS ======================= -->
+  <section class="sec sec--artists" id="artists" data-scene="artists" data-nav="dark" aria-labelledby="artists-title">
+    <div class="wrap">
+      <header class="sec__head">
+        <p class="eyebrow" data-reveal>Artistas</p>
+        <h2 id="artists-title" data-reveal data-delay="1">Management y Comunicación<br /><em>para tu proyecto musical</em></h2>
+        <p class="sec__lead" data-reveal data-delay="2">Artistas y grupos que ya confían en Charohergar.</p>
+      </header>
+
+      <div class="carousel" data-carousel>
+        <div class="carousel__viewport" data-carousel-viewport tabindex="0" role="group" aria-roledescription="carrusel" aria-label="Artistas representados">
+          <div class="carousel__track" data-carousel-track><!-- inyectado por JS --></div>
+        </div>
+
+        <div class="carousel__ui">
+          <button class="ctrl" type="button" data-carousel-prev aria-label="Artista anterior" data-cursor="drag">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <div class="carousel__dots" data-carousel-dots role="tablist" aria-label="Seleccionar artista"></div>
+          <button class="ctrl" type="button" data-carousel-next aria-label="Artista siguiente" data-cursor="drag">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <div class="carousel__detail" data-carousel-detail aria-live="polite"><!-- inyectado por JS --></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= 08 · ESCENA FINAL ======================= -->
+  <section class="sec sec--finale" id="finale" data-scene="finale" data-nav="dark" aria-labelledby="finale-title">
+    <div class="pin">
+      <div class="wrap finale">
+        <p class="eyebrow" data-reveal>El siguiente paso</p>
+        <h2 class="finale__title" id="finale-title">
+          <span class="line" data-reveal data-delay="1"><span>Tu música merece</span></span>
+          <span class="line" data-reveal data-delay="2"><span><em>ser escuchada</em></span></span>
+        </h2>
+        <p class="finale__sub" data-reveal data-delay="3">
+          Management honesto, comunicación con criterio y estrategia hecha a medida.
+        </p>
+        <div class="finale__actions" data-reveal data-delay="4">
+          <a class="btn btn--gold" href="#cta" data-magnetic data-cursor="explore"><span>Hablemos</span></a>
+          <button class="btn btn--ghost" type="button" data-replay data-magnetic data-cursor="play"><span>Repetir experiencia</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= 09 · CTA / CONTACTO ======================= -->
+  <section class="sec sec--cta" id="cta" data-scene="cta" data-nav="dark" aria-labelledby="cta-title">
+    <div class="wrap">
+      <div class="cta">
+        <div class="cta__copy">
+          <p class="eyebrow" data-reveal>Contacto</p>
+          <h2 id="cta-title" data-reveal data-delay="1">Charohergar<br /><em>Agency</em></h2>
+          <p class="cta__lead" data-reveal data-delay="2">Management y Comunicación para tu proyecto musical.</p>
+        </div>
+
+        <ul class="cta__list">
+          <li class="cta__item" data-reveal data-delay="1">
+            <span class="cta__label">Email</span>
+            <a class="cta__value" href="mailto:charo@hergaragency.es" data-cursor="explore">charo@hergaragency.es</a>
+          </li>
+          <li class="cta__item" data-reveal data-delay="2">
+            <span class="cta__label">Teléfono</span>
+            <a class="cta__value" href="tel:+34649337077" data-cursor="explore">+34 649 33 70 77</a>
+          </li>
+          <li class="cta__item" data-reveal data-delay="3">
+            <span class="cta__label">WhatsApp</span>
+            <a class="cta__value" href="https://wa.me/34649337077" target="_blank" rel="noopener" data-cursor="explore">Escríbenos</a>
+          </li>
+          <li class="cta__item" data-reveal data-delay="4">
+            <span class="cta__label">Instagram</span>
+            <a class="cta__value" href="https://www.instagram.com/charo_hergar" target="_blank" rel="noopener" data-cursor="explore">@charo_hergar</a>
+          </li>
+        </ul>
+      </div>
+
+      <footer class="footer">
+        <p class="footer__mark">
+          <svg viewBox="0 0 512 512" width="22" height="22" aria-hidden="true">
+            <rect x="176" y="40" width="160" height="432" fill="none" stroke="currentColor" stroke-width="6" opacity=".45"/>
+            <g fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M92 398 C 18 336 6 214 58 142 C 108 74 208 46 300 48 C 380 50 440 78 462 120 C 478 150 468 182 442 192"/>
+              <path d="M150 434 C 140 352 166 268 206 214 C 236 172 270 178 262 214 C 254 254 214 300 199 342"/>
+              <path d="M199 342 C 224 320 250 302 268 322 C 289 344 293 392 283 434"/>
+              <path d="M283 434 C 332 458 402 464 456 432 C 481 416 487 392 470 384"/>
+            </g>
+          </svg>
+          <span>Charohergar Agency</span>
+        </p>
+        <p class="footer__meta">Management y Comunicación</p>
+        <p class="footer__legal">© <span data-year>2026</span> Charohergar Agency · Todos los derechos reservados</p>
+      </footer>
+    </div>
+  </section>
+
+</main>
+
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+/* =========================================================
+   LOADER
+   ========================================================= */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1.4rem;
+  background: var(--bg-2);
+  transition: opacity 0.8s var(--ease), visibility 0.8s;
+}
+
+.loader.is-done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader__mark {
+  color: var(--gold);
+  animation: loader-float 2.6s ease-in-out infinite;
+}
+
+@keyframes loader-float {
+  0%, 100% { transform: translateY(-4px) rotate(-1.2deg); }
+  50% { transform: translateY(6px) rotate(1.4deg); }
+}
+
+.loader__label {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.loader__bar {
+  width: min(46vw, 260px);
+  height: 2px;
+  background: rgba(245, 242, 236, 0.14);
+  overflow: hidden;
+  border-radius: 2px;
+}
+.loader__bar i {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-2));
+  transition: width 0.35s var(--ease);
+}
+
+.loader__pct {
+  font-size: 0.74rem;
+  letter-spacing: 0.3em;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,82 @@
+/* =========================================================
+   CURSOR PERSONALIZADO (solo desktop con puntero fino)
+   ========================================================= */
+.cursor {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 350;
+  display: none;
+  pointer-events: none;
+  mix-blend-mode: normal;
+  transition: opacity 0.3s var(--ease);
+}
+/* invisible hasta que el puntero se mueva por primera vez */
+.cursor.is-idle { opacity: 0; }
+
+.cursor__dot {
+  position: absolute;
+  top: 0; left: 0;
+  width: 40px; height: 40px;
+  margin: -20px 0 0 -20px;
+  border: 1px solid rgba(245, 242, 236, 0.75);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: width 0.3s var(--ease), height 0.3s var(--ease),
+    margin 0.3s var(--ease), background-color 0.3s var(--ease),
+    border-color 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+.cursor__dot::after {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--gold-2);
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+
+.cursor__label {
+  position: absolute;
+  top: 0; left: 0;
+  transform: translate(-50%, -50%) scale(0.7);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bg-2);
+  opacity: 0;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+  white-space: nowrap;
+}
+
+/* estados */
+.cursor[data-state='view'] .cursor__dot,
+.cursor[data-state='drag'] .cursor__dot,
+.cursor[data-state='explore'] .cursor__dot,
+.cursor[data-state='play'] .cursor__dot {
+  width: 78px; height: 78px;
+  margin: -39px 0 0 -39px;
+  background: rgba(224, 189, 68, 0.92);
+  border-color: transparent;
+}
+.cursor[data-state='view'] .cursor__dot::after,
+.cursor[data-state='drag'] .cursor__dot::after,
+.cursor[data-state='explore'] .cursor__dot::after,
+.cursor[data-state='play'] .cursor__dot::after { opacity: 0; transform: scale(0); }
+
+.cursor[data-state='view'] .cursor__label,
+.cursor[data-state='drag'] .cursor__label,
+.cursor[data-state='explore'] .cursor__label,
+.cursor[data-state='play'] .cursor__label {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.cursor.is-down .cursor__dot { transform: scale(0.86); }
+
+@media (hover: hover) and (pointer: fine) {
+  .cursor { display: block; }
+  body.has-cursor,
+  body.has-cursor a,
+  body.has-cursor button,
+  body.has-cursor [data-cursor] { cursor: none; }
+}

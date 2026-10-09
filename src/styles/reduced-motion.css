@@ -1,0 +1,34 @@
+/* =========================================================
+   PREFERS-REDUCED-MOTION
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .line > span { transform: none !important; }
+
+  .stack__item {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    position: relative;
+    grid-area: auto;
+  }
+  .stack__track { display: grid; gap: 2rem; min-height: 0; }
+
+  .sec--intro,
+  .sec--stack,
+  .sec--reveal,
+  .sec--finale { height: auto; }
+  .pin { position: relative; height: auto; padding-block: clamp(4rem, 12vh, 8rem); }
+
+  .grain { display: none; }
+}

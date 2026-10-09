@@ -1,0 +1,68 @@
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+/* --- tablet --- */
+@media (max-width: 1024px) {
+  :root { --nav-h: 4.2rem; }
+
+  .nav__links { display: none; }
+  .burger { display: block; }
+
+  .intro__title { max-width: 16ch; }
+
+  .stack__track { width: min(100%, 30rem); }
+
+  .card { width: clamp(12rem, 34vw, 15.5rem); }
+}
+
+/* --- móvil --- */
+@media (max-width: 720px) {
+  :root { --gutter: 1.15rem; }
+
+  .nav__cta { display: none; }
+  .sound__txt { display: none; }
+  .sound { padding: 0.5rem; }
+
+  .sec--intro { height: 150svh; }
+  .intro__title { font-size: clamp(2.7rem, 12vw, 4.2rem); max-width: 12ch; }
+  .intro__sub { font-size: 0.95rem; }
+
+  .sec--stack { height: calc(var(--steps) * 112svh); }
+  .stack { justify-items: start; text-align: left; }
+  .stack--right { justify-items: start; text-align: left; }
+  .stack--right .stack__track,
+  .stack--right .stack__item h3,
+  .stack--right .stack__item p { justify-items: start; margin-left: 0; text-align: left; }
+  .stack--right .stack__list li { padding-left: 1.15rem; padding-right: 0; }
+  .stack--right .stack__list li::before { left: 0; right: auto; }
+  .stack--right .stack__dots { justify-content: flex-start; }
+  .stack__track { min-height: clamp(16rem, 42svh, 24rem); }
+
+  .sec--reveal { height: 180svh; }
+  .reveal__title { font-size: clamp(3rem, 15vw, 5rem); }
+
+  .sec--finale { height: 170svh; }
+  .finale__title { font-size: clamp(2.5rem, 11vw, 4rem); }
+  .finale__actions { width: 100%; }
+  .finale__actions .btn { flex: 1 1 12rem; }
+
+  .steps { grid-template-columns: 1fr; }
+
+  .carousel__viewport { height: clamp(21rem, 60vh, 27rem); }
+  .card { width: clamp(11.5rem, 62vw, 14rem); }
+  .carousel__detail { min-height: 10.5rem; }
+
+  .cta__item { flex-direction: column; align-items: flex-start; gap: 0.15rem; }
+  .footer { flex-direction: column; align-items: flex-start; }
+}
+
+/* --- pantallas muy anchas --- */
+@media (min-width: 1800px) {
+  :root { --wrap: 1360px; }
+}
+
+/* --- puntero táctil: ocultar estados de hover intensos --- */
+@media (hover: none) {
+  .step:hover { background: rgba(245, 242, 236, 0.035); border-color: rgba(245, 242, 236, 0.09); }
+}
